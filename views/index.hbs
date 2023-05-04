@@ -1,0 +1,56 @@
+<div class="container mt-5 text-center">
+  {{!-- 類別選單 --}}
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      全部
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#">家居物業</a></li>
+      <li><a class="dropdown-item" href="#">交通出行</a></li>
+      <li><a class="dropdown-item" href="#">休閒娛樂</a></li>
+      <li><a class="dropdown-item" href="#">餐飲食品</a></li>
+      <li><a class="dropdown-item" href="#">其他</a></li>
+    </ul>
+  </div>
+
+  {{!-- 總金額 --}}
+  <div class="total d-flex justify-content-center align-items-center mt-1">
+    <div class="card bg-light text-center w-25">
+      <div class="card-body">
+        <h5 class="card-title font-weight-bold">總金額</h5>
+        <p class="card-text display-4 text-danger">1000</p>
+      </div>
+    </div>
+  </div>
+
+  {{!-- 記帳細節 --}}
+  <div class="mt-1">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">圖標</th>
+          <th scope="col">品項名稱</th>
+          <th scope="col">品項日期</th>
+          <th scope="col">品項金額</th>
+          <th scope="col">修改</th>
+          <th scope="col">刪除</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>icon</td>
+          <td>品項名稱</td>
+          <td>品項日期</td>
+          <td>品項金額</td>
+          <td><a href="#" class="btn btn-warning btn-sm">修改</a></td>
+          <td><a href="#" class="btn btn-danger btn-sm">刪除</a></td>
+        </tr>
+        {{!-- 複製上面的 <tr>...</tr> 來新增更多記帳細節 --}}
+      </tbody>
+    </table>
+  </div>
+
+  {{!-- 新增支出 --}}
+  <a href="#" class="btn btn-warning">新增支出</a>
+</div>
