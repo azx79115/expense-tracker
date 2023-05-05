@@ -13,6 +13,7 @@ router.post(
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/users/login",
+    failureFlash: true,
   })
 );
 // 載入註冊畫面
@@ -50,7 +51,7 @@ router.post("/register", (req, res) => {
 //登出
 router.get("/logout", (req, res) => {
   req.logout(() => {
-    req.flash("success_msg", "您已成功登出");
+    // req.flash("success_msg", "您已成功登出");
     res.redirect("/users/login");
   });
 });
