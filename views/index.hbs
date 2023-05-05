@@ -1,4 +1,4 @@
-<div class="container mt-5 text-center">
+<div class="container mt-2 text-center">
   {{! 類別選單 }}
   <div class="dropdown">
     <button
@@ -43,19 +43,32 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>icon</td>
-          <td>品項名稱</td>
-          <td>品項日期</td>
-          <td>品項金額</td>
-          <td><a href="#" class="btn btn-warning btn-sm">修改</a></td>
-          <td><a href="#" class="btn btn-danger btn-sm">刪除</a></td>
-        </tr>
-        {{! 複製上面的 <tr>...</tr> 來新增更多記帳細節 }}
+        {{#each record}}
+          <tr>
+            <td>{{this.icon}}</td>
+            <td>{{this.name}} </td>
+            <td>{{this.date}}</td>
+            <td>{{this.amount}}</td>
+            <td><a
+                href="/records/{{this._id}}/edit"
+                class="btn btn-warning btn-sm"
+              >修改</a></td>
+            <td><form
+                action="./records/{{this._id}}?_method=DELETE"
+                method="post"
+              >
+                <button
+                  class="btn btn-danger btn-sm"
+                  type="submit"
+                >刪除</button>
+              </form></td>
+          </tr>
+          {{! 複製上面的 <tr>...</tr> 來新增更多記帳細節 }}
+        {{/each}}
       </tbody>
     </table>
   </div>
 
   {{! 新增支出 }}
-  <a href="#" class="btn btn-warning">新增支出</a>
+  <a href="/records/new" class="btn btn-warning">新增支出</a>
 </div>

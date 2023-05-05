@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const listSchema = new Schema({
+const recordSchema = new Schema({
   name: {
     type: String,
     required: true,
   },
-  data: {
+  date: {
     type: Date,
-    required: true,
   },
   amount: {
     type: Number,
@@ -23,4 +22,4 @@ const listSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("list", listSchema);
+module.exports = mongoose.model("record", recordSchema);

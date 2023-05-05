@@ -30,16 +30,18 @@ app.use(
 );
 //呼叫Passport函式並傳入app
 usePassport(app);
-
-//設定res.locals
-app.use((req, res, next) => {
-  console.log(req.user);
-  res.locals.isAuthenticated = req.isAuthenticated();
-  res.locals.user = req.user;
-  next();
-});
 //掛載flash
 app.use(flash());
+//設定res.locals
+app.use((req, res, next) => {
+  // console.log(req.user);
+  res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.user = req.user;
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.warning_msg = req.flash("warning_msg");
+  next();
+});
+
 //method前置處理
 app.use(methodOverride("_method"));
 // 將req導入路由
