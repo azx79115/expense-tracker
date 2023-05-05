@@ -28,9 +28,9 @@ app.use(
     saveUninitialized: true,
   })
 );
-
 //呼叫Passport函式並傳入app
 usePassport(app);
+
 //掛載flash
 app.use(flash());
 //method前置處理

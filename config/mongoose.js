@@ -1,23 +1,27 @@
-const mongoose = require('mongoose')
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
+const mongoose = require("mongoose");
+
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
 }
 
 // 設定連線
 mongoose
-  .connect('mongodb://localhost/expense-tracker')
-  .catch((err) => console.error('Err connecting to MongoDB', err))
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .catch((err) => console.error("Err connecting to MongoDB", err));
 
 //取得資料連線狀態
-const db = mongoose.connection
+const db = mongoose.connection;
 
 //連線異常
-db.on('error', () => {
-  console.log('mongodb err!')
-})
+db.on("error", () => {
+  console.log("mongodb err!");
+});
 //連線成功
-db.once('open', () => {
-  console.log('mongodb connected!')
-})
+db.once("open", () => {
+  console.log("mongodb connected!");
+});
 
-module.exports = db
+module.exports = db;

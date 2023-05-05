@@ -1,7 +1,6 @@
 {
   "name": "expense-tracker",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -24,5 +23,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": ""
 }
