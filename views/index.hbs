@@ -11,11 +11,12 @@
       全部
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li><a class="dropdown-item" href="#">家居物業</a></li>
-      <li><a class="dropdown-item" href="#">交通出行</a></li>
-      <li><a class="dropdown-item" href="#">休閒娛樂</a></li>
-      <li><a class="dropdown-item" href="#">餐飲食品</a></li>
-      <li><a class="dropdown-item" href="#">其他</a></li>
+      <li><a class="dropdown-item" href="/">全部</a></li>
+      <li><a class="dropdown-item" href="/category/家居物業">家居物業</a></li>
+      <li><a class="dropdown-item" href="/category/交通出行">交通出行</a></li>
+      <li><a class="dropdown-item" href="/category/休閒娛樂">休閒娛樂</a></li>
+      <li><a class="dropdown-item" href="/category/餐飲食品">餐飲食品</a></li>
+      <li><a class="dropdown-item" href="/category/其他">其他</a></li>
     </ul>
   </div>
 
@@ -24,7 +25,10 @@
     <div class="card bg-light text-center w-25">
       <div class="card-body">
         <h5 class="card-title font-weight-bold">總金額</h5>
-        <p class="card-text display-4 text-danger">1000</p>
+        <p
+          class="card-text display-4 text-danger"
+          id="totalAmount"
+        >{{totalAmount}}</p>
       </div>
     </div>
   </div>
@@ -34,18 +38,18 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th scope="col">圖標</th>
-          <th scope="col">品項名稱</th>
-          <th scope="col">品項日期</th>
-          <th scope="col">品項金額</th>
+          <th scope="col">類別</th>
+          <th scope="col">名稱</th>
+          <th scope="col">日期</th>
+          <th scope="col">金額</th>
           <th scope="col">修改</th>
           <th scope="col">刪除</th>
         </tr>
       </thead>
       <tbody style="vertical-align: middle;">
-        {{#each record}}
+        {{#each records}}
           <tr>
-            <td>{{this.icon}}</td>
+            <td>{{{this.categoryIcon}}}</td>
             <td>{{this.name}} </td>
             <td>{{this.date}}</td>
             <td>{{this.amount}}</td>
@@ -53,7 +57,8 @@
                 href="/records/{{this._id}}/edit"
                 class="btn btn-warning btn-sm"
               >修改</a></td>
-            <td><form
+            <td>
+              <form
                 action="./records/{{this._id}}?_method=DELETE"
                 method="post"
               >
@@ -61,7 +66,8 @@
                   class="btn btn-danger btn-sm"
                   type="submit"
                 >刪除</button>
-              </form></td>
+              </form>
+            </td>
           </tr>
           {{! 複製上面的 <tr>...</tr> 來新增更多記帳細節 }}
         {{/each}}
