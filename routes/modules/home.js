@@ -29,6 +29,28 @@ router.get("/", async (req, res) => {
 });
 
 //選擇類別檢閱
-router.get("/:");
+router.get("/category/:category", async (req, res) => {
+  const category = req.params.category;
+  const userId = req.user._id;
+
+  const foundCategory = await Category.findOne({ name: category });
+  // console.log(foundCategory);
+  const categoryId = foundCategory._id;
+  const records = await Record.find({ userId, categoryId })
+    .lean()
+    .sort({ date: "desc" });
+  let totalAmount = 0;
+  const formattedRecords = records.map((record) => {
+    console.log(record);
+    totalAmount += record.amount;
+    record.date = new Date(record.date).toLocaleString().substring(0, 9);
+    // console.log(record.categoryIcon);
+    record.categoryIcon = foundCategory.icon;
+    // console.log(record.categoryIcon);
+    return record;
+  });
+
+  res.render("index", { records: formattedRecords, totalAmount });
+});
 
 module.exports = router;
