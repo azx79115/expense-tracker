@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+//record模型
 const recordSchema = new Schema({
   name: {
     type: String,

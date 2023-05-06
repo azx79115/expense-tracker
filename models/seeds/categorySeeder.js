@@ -10,11 +10,13 @@ const category = [
   { name: "其他", icon: '<i class="fa-solid fa-pen"></i>' },
 ];
 
-db.once("open", () => {
-  Category.create(category)
-    .then(() => {
-      console.log("categorySeeder is done!");
-      process.exit();
-    })
-    .catch((err) => console.log(err));
+db.once("open", async () => {
+  try {
+    //創建category種子資料
+    await Category.create(category);
+    console.log("categorySeeder is done!");
+    process.exit();
+  } catch (err) {
+    console.log(err);
+  }
 });
