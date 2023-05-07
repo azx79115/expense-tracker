@@ -42,25 +42,21 @@ router.get("/:category", async (req, res) => {
   console.log(foundCategory);
   if (foundCategory !== null) {
     const categoryId = foundCategory._id;
-    // 其他使用categoryId的代碼
+    //從資料庫中找到符合用戶的支出項目與categoryId,並依日期降序排列
+    const records = await Record.find({ userId, categoryId })
+      .lean()
+      .sort({ date: "desc" });
+    let totalAmount = 0;
+    const formattedRecords = records.map((record) => {
+      totalAmount += record.amount;
+      record.date = new Date(record.date).toLocaleString().substring(0, 9);
+      record.categoryIcon = foundCategory.icon;
+      return record;
+    });
+    res.render("index", { records: formattedRecords, totalAmount });
   } else {
     console.error("找不到Category");
   }
-
-  const categoryId = foundCategory._id;
-  //從資料庫中找到符合用戶的支出項目與categoryId,並依日期降序排列
-  const records = await Record.find({ userId, categoryId })
-    .lean()
-    .sort({ date: "desc" });
-  let totalAmount = 0;
-  const formattedRecords = records.map((record) => {
-    totalAmount += record.amount;
-    record.date = new Date(record.date).toLocaleString().substring(0, 9);
-    record.categoryIcon = foundCategory.icon;
-    return record;
-  });
-
-  res.render("index", { records: formattedRecords, totalAmount });
 });
 
 module.exports = router;
