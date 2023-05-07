@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
 });
 
 //選擇類別檢閱
-router.get("/category/:category", async (req, res) => {
+router.get("/:category", async (req, res) => {
   const category = req.params.category;
   const userId = req.user._id;
   //從資料庫中找到與req相同的category
