@@ -39,6 +39,14 @@ router.get("/:category", async (req, res) => {
   const userId = req.user._id;
   //從資料庫中找到與req相同的category
   const foundCategory = await Category.findOne({ name: category });
+  console.log(foundCategory);
+  if (foundCategory !== null) {
+    const categoryId = foundCategory._id;
+    // 其他使用categoryId的代碼
+  } else {
+    console.error("找不到Category");
+  }
+
   const categoryId = foundCategory._id;
   //從資料庫中找到符合用戶的支出項目與categoryId,並依日期降序排列
   const records = await Record.find({ userId, categoryId })
