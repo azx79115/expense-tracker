@@ -14,7 +14,6 @@ router.post("/new", async (req, res) => {
   try {
     const record = req.body;
     const userId = req.user._id;
-    // console.log(record);
     const category = await Category.findOne({ name: record.category });
     await Record.create({ ...record, categoryId: category._id, userId });
     res.redirect("/");
