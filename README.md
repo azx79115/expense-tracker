@@ -1,9 +1,10 @@
-#爸爸的私房錢
+# 爸爸的私房錢
+
 ![img.png](記帳.png)
 
-##一個簡易的記帳網站、介面簡潔風格
+## 一個簡易的記帳網站、介面簡潔風格
 
-##Features 產品功能
+## Features 產品功能
 
 - 使用者可以註冊帳號
 - 使用者可以登陸、建立自己的記帳資料
@@ -45,6 +46,6 @@ Server is running on http://localhost:3000
 mongodb connected!
 ```
 
-##Environment Set up
+## Environment Set up
 
 - Node.js@18.16.0
